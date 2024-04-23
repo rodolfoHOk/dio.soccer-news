@@ -30,4 +30,4 @@
 
 #### Temp
 
-- Stop: Parte I - Vídeo 03 - Tempo 00:00
+- Stop: Parte I - Vídeo 06 - Tempo 00:00

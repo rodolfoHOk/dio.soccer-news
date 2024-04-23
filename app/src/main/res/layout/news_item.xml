@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_news"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_half_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_main"
