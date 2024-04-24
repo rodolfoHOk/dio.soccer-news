@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dio.soccernews.databinding.FragmentNewsBinding
-import br.com.dio.soccernews.ui.adapter.NewsAdapter
+import br.com.dio.soccernews.ui.commons.adapters.NewsAdapter
 
 class NewsFragment : Fragment() {
 
@@ -20,13 +21,20 @@ class NewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
+        val newsViewModel = ViewModelProvider(
+            this, NewsViewModelFactory(requireActivity().application)
+        ).get(NewsViewModel::class.java)
 
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
 
         binding.rvNews.layoutManager = LinearLayoutManager(this.context)
         newsViewModel.news.observe(viewLifecycleOwner) { newsList ->
             binding.rvNews.adapter = NewsAdapter(newsList)
+        }
+        newsViewModel.error.observe(viewLifecycleOwner) { error ->
+            if (error.isNotBlank()) {
+                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+            }
         }
 
         return binding.root

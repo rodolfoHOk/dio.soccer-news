@@ -1,11 +1,10 @@
-package br.com.dio.soccernews.ui.adapter
+package br.com.dio.soccernews.ui.commons.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.soccernews.databinding.NewsItemBinding
 import br.com.dio.soccernews.domain.model.News
-
 
 class NewsAdapter(
     private val newsList: List<News>
