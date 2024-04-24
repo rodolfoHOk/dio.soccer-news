@@ -4,10 +4,8 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import br.com.dio.soccernews.R
-import br.com.dio.soccernews.data.repository.NewsRepositoryImpl
 import br.com.dio.soccernews.domain.model.News
 import br.com.dio.soccernews.domain.repository.NewsRepository
 import kotlinx.coroutines.launch
@@ -53,17 +51,6 @@ class NewsViewModel(
 
     private fun getResourceString(resourceId: Int): String {
         return application.resources.getString(resourceId)
-    }
-
-}
-
-class NewsViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return NewsViewModel(
-            application = application,
-            newsRepository = NewsRepositoryImpl()
-        ) as T
     }
 
 }
