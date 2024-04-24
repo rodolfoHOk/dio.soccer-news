@@ -23,13 +23,12 @@ class FavoritesFragment : Fragment() {
         val favoritesViewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
 
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         val textView: TextView = binding.textFavorites
         favoritesViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {

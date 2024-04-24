@@ -23,13 +23,12 @@ class NewsFragment : Fragment() {
         val newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
 
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textNews
+//        val textView: TextView = binding.textNews
         newsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+//            textView.text = it
         }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
