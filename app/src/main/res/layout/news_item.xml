@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/card_news_image_height"
             android:contentDescription="@string/card_image_description"
-            android:src="@color/teal_700"
+            android:src="@color/red_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -81,11 +81,11 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:contentDescription="@string/card_favorite_btn_description"
-                android:src="@drawable/ic_favorite"
+                android:src="@drawable/ic_favorite_border"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_open_link"
                 app:layout_constraintEnd_toStartOf="@+id/iv_share"
                 app:layout_constraintTop_toTopOf="@+id/btn_open_link"
-                app:tint="@color/purple_500" />
+                app:tint="@color/green_500" />
 
             <ImageView
                 android:id="@+id/iv_share"
@@ -97,7 +97,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/btn_open_link"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btn_open_link"
-                app:tint="@color/purple_500" />
+                app:tint="@color/green_500" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
