@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dio.soccernews.databinding.FragmentNewsBinding
+import br.com.dio.soccernews.ui.adapter.NewsAdapter
 
 class NewsFragment : Fragment() {
 
     private var _binding: FragmentNewsBinding? = null
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -24,10 +24,11 @@ class NewsFragment : Fragment() {
 
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
 
-//        val textView: TextView = binding.textNews
-        newsViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
+        binding.rvNews.layoutManager = LinearLayoutManager(this.context)
+        newsViewModel.news.observe(viewLifecycleOwner) { newsList ->
+            binding.rvNews.adapter = NewsAdapter(newsList)
         }
+
         return binding.root
     }
 
