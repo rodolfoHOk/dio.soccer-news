@@ -11,7 +11,8 @@ import br.com.dio.soccernews.domain.model.News
 import com.squareup.picasso.Picasso
 
 class NewsAdapter(
-    private val newsList: List<News>
+    private val newsList: List<News>,
+    private val onFavorite: (news: News) -> Unit
 ) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
@@ -48,6 +49,9 @@ class NewsAdapter(
                 intent.putExtra(Intent.EXTRA_TEXT, news.link)
                 val shareString = view.context.getString(R.string.share)
                 view.context.startActivity(Intent.createChooser(intent, shareString))
+            }
+            this.ivFavorite.setOnClickListener {
+                onFavorite(news)
             }
         }
 
