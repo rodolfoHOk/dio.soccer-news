@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dio.soccernews.databinding.FragmentNewsBinding
 import br.com.dio.soccernews.ui.commons.adapters.NewsAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class NewsFragment : Fragment() {
 
@@ -33,7 +33,7 @@ class NewsFragment : Fragment() {
         }
         newsViewModel.error.observe(viewLifecycleOwner) { error ->
             if (error.isNotBlank()) {
-                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+                Snackbar.make(requireView(), error, Snackbar.LENGTH_LONG).show()
             }
         }
 
