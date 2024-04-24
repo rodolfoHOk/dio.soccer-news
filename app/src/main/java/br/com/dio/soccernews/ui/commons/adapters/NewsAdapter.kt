@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.dio.soccernews.R
 import br.com.dio.soccernews.databinding.NewsItemBinding
 import br.com.dio.soccernews.domain.model.News
 import com.squareup.picasso.Picasso
@@ -40,6 +41,13 @@ class NewsAdapter(
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.setData(Uri.parse(news.link))
                 view.context.startActivity(intent)
+            }
+            this.ivShare.setOnClickListener { view ->
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.setType("text/plain")
+                intent.putExtra(Intent.EXTRA_TEXT, news.link)
+                val shareString = view.context.getString(R.string.share)
+                view.context.startActivity(Intent.createChooser(intent, shareString))
             }
         }
 

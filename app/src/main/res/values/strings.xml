@@ -8,4 +8,5 @@
     <string name="card_share_btn_description">Compartilhar</string>
     <string name="resource_not_found">Recurso não encontrado</string>
     <string name="resource_fetch_error">Erro ao tentar buscar recurso</string>
+    <string name="share">Compartilhar</string>
 </resources>
