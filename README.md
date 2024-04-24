@@ -13,6 +13,7 @@
 
 - com.squareup.retrofit2:retrofit
 - com.squareup.retrofit2:converter-gson
+- com.squareup.picasso:picasso
 
 ## Melhorias ou mudanças em relação as lives
 
@@ -36,4 +37,4 @@
 
 #### Temp
 
-- Stop: Parte II - Vídeo 04 - Tempo 00:00
+- Stop: Parte II - Vídeo 05 - Tempo 00:00

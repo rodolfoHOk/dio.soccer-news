@@ -1,10 +1,13 @@
 package br.com.dio.soccernews.ui.commons.adapters
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.soccernews.databinding.NewsItemBinding
 import br.com.dio.soccernews.domain.model.News
+import com.squareup.picasso.Picasso
 
 class NewsAdapter(
     private val newsList: List<News>
@@ -29,6 +32,15 @@ class NewsAdapter(
         fun bind(news: News) = binding.run {
             this.tvCardTitle.text = news.title
             this.tvCardHeadline.text = news.headline
+            Picasso.get().load(news.image)
+                .centerCrop()
+                .resize(396, 160)
+                .into(this.ivCardImage)
+            this.btnOpenLink.setOnClickListener { view ->
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.setData(Uri.parse(news.link))
+                view.context.startActivity(intent)
+            }
         }
 
     }
