@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dio.soccernews.databinding.FragmentFavoritesBinding
 import br.com.dio.soccernews.ui.commons.adapter.NewsAdapter
+import br.com.dio.soccernews.ui.commons.state.State
 import com.google.android.material.snackbar.Snackbar
 
 class FavoritesFragment : Fragment() {
@@ -31,12 +32,23 @@ class FavoritesFragment : Fragment() {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
         binding.rvNews.layoutManager = LinearLayoutManager(this.context)
+
+        binding.srlFavorites.setOnRefreshListener {
+            favoritesViewModel.findAllFavorites()
+        }
+
         favoritesViewModel.favoritesNewsList.observe(viewLifecycleOwner) { favoritesList ->
             binding.rvNews.adapter = NewsAdapter(favoritesList) { news ->
                 favoritesViewModel.removeFavorite(news)
             }
         }
-        favoritesViewModel.error.observe(viewLifecycleOwner) { error ->
+        favoritesViewModel.state.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                State.DOING -> binding.srlFavorites.isRefreshing = true
+                else -> binding.srlFavorites.isRefreshing = false
+            }
+        }
+        favoritesViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             if (error.isNotBlank()) {
                 Snackbar.make(requireView(), error, Snackbar.LENGTH_LONG).show()
             }

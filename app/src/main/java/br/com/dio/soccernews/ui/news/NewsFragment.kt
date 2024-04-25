@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dio.soccernews.databinding.FragmentNewsBinding
 import br.com.dio.soccernews.ui.commons.adapter.NewsAdapter
+import br.com.dio.soccernews.ui.commons.state.State
 import com.google.android.material.snackbar.Snackbar
 
 class NewsFragment : Fragment() {
@@ -19,9 +20,7 @@ class NewsFragment : Fragment() {
     private lateinit var newsViewModel: NewsViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         newsViewModel = ViewModelProvider(
             this, NewsViewModelFactory(requireActivity().application)
@@ -30,12 +29,23 @@ class NewsFragment : Fragment() {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
 
         binding.rvNews.layoutManager = LinearLayoutManager(this.context)
+
+        binding.srlNews.setOnRefreshListener {
+            newsViewModel.getAllNews()
+        }
+
         newsViewModel.newsList.observe(viewLifecycleOwner) { newsList ->
             binding.rvNews.adapter = NewsAdapter(newsList) { news ->
                 newsViewModel.favorite(news)
             }
         }
-        newsViewModel.error.observe(viewLifecycleOwner) { error ->
+        newsViewModel.state.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                State.DOING -> binding.srlNews.isRefreshing = true
+                else -> binding.srlNews.isRefreshing = false
+            }
+        }
+        newsViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             if (error.isNotBlank()) {
                 Snackbar.make(requireView(), error, Snackbar.LENGTH_LONG).show()
             }
@@ -53,4 +63,5 @@ class NewsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

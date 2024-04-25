@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.dio.soccernews.R
 import br.com.dio.soccernews.domain.model.News
 import br.com.dio.soccernews.domain.repository.NewsRepository
+import br.com.dio.soccernews.ui.commons.state.State
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,8 +24,11 @@ class NewsViewModel(
     private val _newsList = MutableLiveData<List<News>>(listOf())
     val newsList: LiveData<List<News>> = _newsList
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> = _error
+    private val _state = MutableLiveData<State>()
+    val state: LiveData<State> = _state
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
 
     fun favorite(newsToFavorite: News) = viewModelScope.launch(Dispatchers.IO) {
         if (newsToFavorite.favorite) {
@@ -52,29 +56,36 @@ class NewsViewModel(
     }
 
     fun getAllNews() = viewModelScope.launch(Dispatchers.IO) {
+        withContext(Dispatchers.Main) {
+            _state.value = State.DOING
+        }
         runCatching {
             newsRepository.getAllNews()
         }.onSuccess { news ->
             withContext(Dispatchers.Main) {
                 _newsList.value = news
+                _state.value = State.DONE
             }
         }.onFailure { exception: Throwable ->
             when (exception) {
                 is HttpException -> {
                     when (exception.code()) {
                         HttpURLConnection.HTTP_NOT_FOUND -> withContext(Dispatchers.Main) {
-                            _error.value = getResourceString(R.string.resource_not_found)
+                            _errorMessage.value = getResourceString(R.string.resource_not_found)
+                            _state.value = State.ERROR
                         }
 
                         else -> withContext(Dispatchers.Main) {
-                            _error.value = getResourceString(R.string.resource_fetch_error)
+                            _errorMessage.value = getResourceString(R.string.resource_fetch_error)
+                            _state.value = State.ERROR
                         }
                     }
                 }
 
                 else -> withContext(Dispatchers.Main) {
                     Log.e("App error", exception.stackTraceToString())
-                    _error.value = getResourceString(R.string.resource_fetch_error)
+                    _errorMessage.value = getResourceString(R.string.resource_fetch_error)
+                    _state.value = State.ERROR
                 }
             }
         }

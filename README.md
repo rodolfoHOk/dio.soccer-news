@@ -18,6 +18,7 @@
 - androidx.room:room-runtime
 - androidx.room:room-ktx
 - androidx.room:room-compiler
+- libs.androidx.swiperefreshlayout
 
 ## Melhorias ou mudanças em relação as lives
 
