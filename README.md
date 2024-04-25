@@ -29,9 +29,9 @@
 - Uso Gradle com Kotlin ao invés do Groove por recomendação do Android Studio
 - Uso do Kotlin ao invés do Java
 - Uso do View Binding no RecyclerView Adapter
-- Adicionado uma camada de repository ao invés de chamar a api diretamente no viewmodel
+- Adicionado uma camada de repository para dependências das viewmodels
 - Uso de funções assíncronas e coroutines do Kotlin
-- Uso do ViewModelProvider.Factory para instanciar o viewmodel com parâmetros
+- ~~Uso do ViewModelProvider.Factory para instanciar o viewmodel com parâmetros~~ (substituído pelo Hilt)
 - Mudando o ícone do favoritar quando é favorito ao invés de mudar a cor
 - Quando busca todas as notícias o repositório já retorna se uma notícia é ou não uma favorita
 - Uso do Hilt para injeção de dependências
@@ -50,7 +50,3 @@
 ## Links para referências
 
 - https://github.com/nglauber/books_jetpack
-
-#### Temp
-
-- Stop: Parte 4 - Vídeo 05 - Tempo 00:00
