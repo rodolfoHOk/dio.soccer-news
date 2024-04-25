@@ -27,6 +27,7 @@
 - Adicionado uma camada de repository ao invés de chamar a api diretamente no viewmodel
 - Uso de funções assíncronas e coroutines do Kotlin
 - Uso do ViewModelProvider.Factory para instanciar o viewmodel com parâmetros
+- Não uso do banco de dados diretamente no fragment mas através do viewmodel
 
 ## Rodar
 

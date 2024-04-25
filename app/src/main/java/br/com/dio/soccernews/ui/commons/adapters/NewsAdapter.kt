@@ -53,6 +53,12 @@ class NewsAdapter(
             this.ivFavorite.setOnClickListener {
                 onFavorite(news)
             }
+            val imageResource = if (news.favorite) {
+                R.drawable.ic_favorite
+            } else {
+                R.drawable.ic_favorite_border
+            }
+            this.ivFavorite.setImageResource(imageResource)
         }
 
     }

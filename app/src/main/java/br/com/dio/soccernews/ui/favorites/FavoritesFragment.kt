@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import br.com.dio.soccernews.databinding.FragmentFavoritesBinding
@@ -20,14 +19,13 @@ class FavoritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val favoritesViewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
+
+        val favoritesViewModel = ViewModelProvider(
+            this, FavoritesViewModelFactory(requireActivity().application)
+        ).get(FavoritesViewModel::class.java)
 
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
-        val textView: TextView = binding.textFavorites
-        favoritesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return binding.root
     }
 

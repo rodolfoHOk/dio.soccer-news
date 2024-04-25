@@ -13,7 +13,14 @@ class NewsRepositoryImpl(
 ) : NewsRepository {
 
     override suspend fun getAllNews(): List<News> {
-        return soccerNewsApi.getAllNews()
+        val favoritesIds = appDatabase.newsDao().findAllFavorites().map { favorite ->
+            favorite.id
+        }
+        val newsList = soccerNewsApi.getAllNews().map { news ->
+            news.favorite = favoritesIds.contains(news.id)
+            news
+        }
+        return newsList
     }
 
     override suspend fun findAllFavorites(): List<News> {

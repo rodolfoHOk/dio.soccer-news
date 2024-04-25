@@ -1,7 +1,6 @@
 package br.com.dio.soccernews.ui.news
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,9 +28,9 @@ class NewsFragment : Fragment() {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
 
         binding.rvNews.layoutManager = LinearLayoutManager(this.context)
-        newsViewModel.news.observe(viewLifecycleOwner) { newsList ->
+        newsViewModel.newsList.observe(viewLifecycleOwner) { newsList ->
             binding.rvNews.adapter = NewsAdapter(newsList) { news ->
-                Log.d("Event ->", "Favorite click on news with id: ${news.id}")
+                newsViewModel.favorite(news)
             }
         }
         newsViewModel.error.observe(viewLifecycleOwner) { error ->
