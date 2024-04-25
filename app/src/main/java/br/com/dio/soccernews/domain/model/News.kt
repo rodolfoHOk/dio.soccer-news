@@ -5,5 +5,6 @@ data class News(
     val title: String,
     val headline: String,
     val image: String,
-    val link: String
+    val link: String,
+    val favorite: Boolean
 )

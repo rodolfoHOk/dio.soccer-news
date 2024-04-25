@@ -8,12 +8,16 @@
 - Android
 - JetPack
 - Retrofit
+- Room
 
 ### Bibliotecas adicionadas
 
 - com.squareup.retrofit2:retrofit
 - com.squareup.retrofit2:converter-gson
 - com.squareup.picasso:picasso
+- androidx.room:room-runtime
+- androidx.room:room-ktx
+- androidx.room:room-compiler
 
 ## Melhorias ou mudanças em relação as lives
 
@@ -37,4 +41,4 @@
 
 #### Temp
 
-- Stop: Parte 3 - Vídeo 03 - Tempo 00:00
+- Stop: Parte 3 - Vídeo 05 - Tempo 00:00
