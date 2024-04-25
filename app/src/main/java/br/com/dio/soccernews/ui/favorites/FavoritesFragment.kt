@@ -5,29 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dio.soccernews.databinding.FragmentFavoritesBinding
 import br.com.dio.soccernews.ui.commons.adapter.NewsAdapter
 import br.com.dio.soccernews.ui.commons.state.State
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var favoritesViewModel: FavoritesViewModel
+    private val favoritesViewModel by viewModels<FavoritesViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        favoritesViewModel = ViewModelProvider(
-            this, FavoritesViewModelFactory(requireActivity().application)
-        ).get(FavoritesViewModel::class.java)
 
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
@@ -66,4 +64,5 @@ class FavoritesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

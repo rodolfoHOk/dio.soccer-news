@@ -1,13 +1,17 @@
 <resources>
     <string name="app_name">Soccer News</string>
+
     <string name="title_news">Notícias</string>
     <string name="title_favorites">Favoritas</string>
+
     <string name="card_image_description">Imagem da notícia</string>
     <string name="card_btn_open_link_label">Abrir link</string>
     <string name="card_favorite_btn_description">Favoritar</string>
     <string name="card_share_btn_description">Compartilhar</string>
+
     <string name="resource_not_found">Recurso não encontrado</string>
     <string name="resource_fetch_error">Erro ao tentar buscar recurso</string>
     <string name="data_recover_error">Erro ao tentar recuperar dados</string>
+
     <string name="share">Compartilhar</string>
 </resources>

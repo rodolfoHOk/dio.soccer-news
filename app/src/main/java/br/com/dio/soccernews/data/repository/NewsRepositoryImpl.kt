@@ -6,8 +6,9 @@ import br.com.dio.soccernews.data.local.mapper.toEntity
 import br.com.dio.soccernews.data.remote.SoccerNewsApi
 import br.com.dio.soccernews.domain.model.News
 import br.com.dio.soccernews.domain.repository.NewsRepository
+import javax.inject.Inject
 
-class NewsRepositoryImpl(
+class NewsRepositoryImpl @Inject constructor(
     private val soccerNewsApi: SoccerNewsApi,
     private val appDatabase: AppDatabase
 ) : NewsRepository {

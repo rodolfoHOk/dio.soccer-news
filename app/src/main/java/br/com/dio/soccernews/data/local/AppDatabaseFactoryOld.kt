@@ -3,7 +3,11 @@ package br.com.dio.soccernews.data.local
 import android.content.Context
 import androidx.room.Room
 
-class AppDatabaseFactory {
+/**
+ * @Deprecated
+ * Now uses Retrofit for singleton and dependency injection
+ */
+class AppDatabaseFactoryOld {
 
     companion object {
 

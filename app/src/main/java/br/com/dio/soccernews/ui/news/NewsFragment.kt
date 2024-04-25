@@ -5,26 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dio.soccernews.databinding.FragmentNewsBinding
 import br.com.dio.soccernews.ui.commons.adapter.NewsAdapter
 import br.com.dio.soccernews.ui.commons.state.State
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewsFragment : Fragment() {
 
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var newsViewModel: NewsViewModel
+    private val newsViewModel by viewModels<NewsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        newsViewModel = ViewModelProvider(
-            this, NewsViewModelFactory(requireActivity().application)
-        ).get(NewsViewModel::class.java)
 
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
 

@@ -3,7 +3,11 @@ package br.com.dio.soccernews.data.remote
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class SoccerNewsApiFactory {
+/**
+ * @Deprecated
+ * Now uses Retrofit for singleton and dependency injection
+ */
+class SoccerNewsApiFactoryOld {
 
     companion object {
 

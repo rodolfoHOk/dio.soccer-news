@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -42,6 +43,7 @@ android {
 dependencies {
     val retrofit_version = "2.11.0"
     val room_version = "2.6.1"
+    val hilt_version = "2.51.1"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -59,8 +61,10 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
+    implementation("com.google.dagger:hilt-android:$hilt_version")
 
     kapt("androidx.room:room-compiler:$room_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

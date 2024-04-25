@@ -10,13 +10,16 @@ import br.com.dio.soccernews.R
 import br.com.dio.soccernews.domain.model.News
 import br.com.dio.soccernews.domain.repository.NewsRepository
 import br.com.dio.soccernews.ui.commons.state.State
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.net.HttpURLConnection
+import javax.inject.Inject
 
-class NewsViewModel(
+@HiltViewModel
+class NewsViewModel @Inject constructor(
     private val application: Application,
     private val newsRepository: NewsRepository
 ) : ViewModel() {

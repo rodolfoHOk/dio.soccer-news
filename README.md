@@ -7,8 +7,9 @@
 - Kotlin
 - Android
 - JetPack
-- Retrofit
-- Room
+- Retrofit (Http requests)
+- Room (SQLite database)
+- Hilt (Dependency Injection)
 
 ### Bibliotecas adicionadas
 
@@ -19,6 +20,9 @@
 - androidx.room:room-ktx
 - androidx.room:room-compiler
 - libs.androidx.swiperefreshlayout
+- com.google.dagger.hilt.android
+- com.google.dagger:hilt-android
+- com.google.dagger:hilt-android-compiler
 
 ## Melhorias ou mudanças em relação as lives
 
@@ -30,6 +34,7 @@
 - Uso do ViewModelProvider.Factory para instanciar o viewmodel com parâmetros
 - Mudando o ícone do favoritar quando é favorito ao invés de mudar a cor
 - Quando busca todas as notícias o repositório já retorna se uma notícia é ou não uma favorita
+- Uso do Hilt para injeção de dependências
 
 ## Rodar
 
