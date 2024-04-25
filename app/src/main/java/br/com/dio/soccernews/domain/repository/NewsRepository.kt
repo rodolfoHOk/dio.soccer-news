@@ -8,8 +8,8 @@ interface NewsRepository {
 
     suspend fun findAllFavorites(): List<News>
 
-    suspend fun insertOrReplace(news: News)
+    suspend fun insertOrReplaceFavorite(news: News)
 
-    suspend fun delete(news: News)
+    suspend fun deleteFavorite(news: News)
 
 }

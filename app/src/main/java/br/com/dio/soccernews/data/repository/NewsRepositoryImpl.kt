@@ -27,11 +27,11 @@ class NewsRepositoryImpl(
         return appDatabase.newsDao().findAllFavorites().toDomain()
     }
 
-    override suspend fun insertOrReplace(news: News) {
+    override suspend fun insertOrReplaceFavorite(news: News) {
         appDatabase.newsDao().insertOrReplace(news = news.toEntity())
     }
 
-    override suspend fun delete(news: News) {
+    override suspend fun deleteFavorite(news: News) {
         appDatabase.newsDao().delete(news = news.toEntity())
     }
 

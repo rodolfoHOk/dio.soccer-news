@@ -29,7 +29,7 @@ class FavoritesViewModel(
     }
 
     fun removeFavorite(news: News) = viewModelScope.launch(Dispatchers.IO) {
-        newsRepository.delete(news)
+        newsRepository.deleteFavorite(news)
         withContext(Dispatchers.Main) {
             _favoritesNewsList.value?.minus(news)
         }

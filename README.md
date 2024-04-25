@@ -28,6 +28,8 @@
 - Uso de funções assíncronas e coroutines do Kotlin
 - Uso do ViewModelProvider.Factory para instanciar o viewmodel com parâmetros
 - Não uso do banco de dados diretamente no fragment mas através do viewmodel
+- Mudando o ícone do favoritar quando é favorito ao invés de mudar a cor
+- Quando busca todas as notícias o repositório já retorna se uma notícia é ou não uma favorita
 
 ## Rodar
 
@@ -42,4 +44,4 @@
 
 #### Temp
 
-- Stop: Parte 3 - Vídeo 05 - Tempo 00:00
+- Stop: Parte 3 - Vídeo 09 - Tempo 00:00

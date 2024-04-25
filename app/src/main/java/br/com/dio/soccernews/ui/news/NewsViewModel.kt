@@ -32,7 +32,7 @@ class NewsViewModel(
 
     fun favorite(newsToFavorite: News) = viewModelScope.launch(Dispatchers.IO) {
         if (newsToFavorite.favorite) {
-            newsRepository.delete(newsToFavorite)
+            newsRepository.deleteFavorite(newsToFavorite)
             withContext(Dispatchers.Main) {
                 _newsList.value = newsList.value?.map { news ->
                     if (news.id == newsToFavorite.id) {
@@ -43,7 +43,7 @@ class NewsViewModel(
             }
         } else {
             newsToFavorite.favorite = true
-            newsRepository.insertOrReplace(newsToFavorite)
+            newsRepository.insertOrReplaceFavorite(newsToFavorite)
             withContext(Dispatchers.Main) {
                 _newsList.value = newsList.value?.map { news ->
                     if (news.id == newsToFavorite.id) {
