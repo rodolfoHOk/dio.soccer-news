@@ -4,6 +4,8 @@
 
 ## Tecnologias
 
+### Sem JetPack Compose (Branch without_compose)
+
 - Kotlin
 - Android
 - JetPack
@@ -11,7 +13,12 @@
 - Room (SQLite database)
 - Hilt (Dependency Injection)
 
-### Bibliotecas adicionadas
+### Com JetPack Compose (Branch main)
+
+- Todas as tecnologias anteriores
+- JetPack Compose
+
+## Bibliotecas adicionadas
 
 - com.squareup.retrofit2:retrofit
 - com.squareup.retrofit2:converter-gson
@@ -24,7 +31,13 @@
 - com.google.dagger:hilt-android
 - com.google.dagger:hilt-android-compiler
 
+### Adicionais com JetPack Compose
+
+- 
+
 ## Melhorias ou mudanças em relação as lives
+
+### Sem JetPack Compose (Branch without_compose)
 
 - Uso Gradle com Kotlin ao invés do Groove por recomendação do Android Studio
 - Uso do Kotlin ao invés do Java
@@ -35,6 +48,10 @@
 - Mudando o ícone do favoritar quando é favorito ao invés de mudar a cor
 - Quando busca todas as notícias o repositório já retorna se uma notícia é ou não uma favorita
 - Uso do Hilt para injeção de dependências
+
+### Com JetPack Compose (Branch main)
+
+- Migração para Jetpack Compose
 
 ## Rodar
 
@@ -50,3 +67,7 @@
 ## Links para referências
 
 - https://github.com/nglauber/books_jetpack
+- https://developer.android.com/develop/ui/compose/migrate?hl=pt-br
+- https://developer.android.com/develop/ui/compose/setup?hl=pt-br#setup-compose
+- https://developer.android.com/develop/ui/compose/migrate/migration-scenarios/recycler-view?hl=pt-br
+- https://developer.android.com/develop/ui/compose/migrate/migration-scenarios/navigation?hl=pt-br

@@ -1,7 +1,8 @@
-package br.com.dio.soccernews.data.local
+package br.com.dio.soccernews.old.data.local
 
 import android.content.Context
 import androidx.room.Room
+import br.com.dio.soccernews.data.local.AppDatabase
 
 /**
  * @Deprecated
