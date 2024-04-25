@@ -16,12 +16,14 @@ class NewsFragment : Fragment() {
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var newsViewModel: NewsViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val newsViewModel = ViewModelProvider(
+        newsViewModel = ViewModelProvider(
             this, NewsViewModelFactory(requireActivity().application)
         ).get(NewsViewModel::class.java)
 
@@ -40,6 +42,11 @@ class NewsFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        newsViewModel.getAllNews()
     }
 
     override fun onDestroyView() {

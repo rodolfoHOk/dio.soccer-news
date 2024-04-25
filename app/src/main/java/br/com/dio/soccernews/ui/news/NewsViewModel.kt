@@ -55,7 +55,7 @@ class NewsViewModel(
         }
     }
 
-    private fun getAllNews() = viewModelScope.launch(Dispatchers.IO) {
+    fun getAllNews() = viewModelScope.launch(Dispatchers.IO) {
         runCatching {
             newsRepository.getAllNews()
         }.onSuccess { news ->

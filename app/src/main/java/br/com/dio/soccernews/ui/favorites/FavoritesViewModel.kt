@@ -31,11 +31,11 @@ class FavoritesViewModel(
     fun removeFavorite(news: News) = viewModelScope.launch(Dispatchers.IO) {
         newsRepository.deleteFavorite(news)
         withContext(Dispatchers.Main) {
-            _favoritesNewsList.value?.minus(news)
+            _favoritesNewsList.value = favoritesNewsList.value?.minus(news)
         }
     }
 
-    private fun findAllFavorites() = viewModelScope.launch(Dispatchers.IO) {
+    fun findAllFavorites() = viewModelScope.launch(Dispatchers.IO) {
         runCatching {
             newsRepository.findAllFavorites()
         }.onSuccess { newsList ->

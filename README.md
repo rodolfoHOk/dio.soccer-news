@@ -44,4 +44,4 @@
 
 #### Temp
 
-- Stop: Parte 3 - Vídeo 09 - Tempo 00:00
+- Stop: Parte 4 - Vídeo 01 - Tempo 00:00
