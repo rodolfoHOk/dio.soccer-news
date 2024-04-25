@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dio.soccernews.databinding.FragmentNewsBinding
-import br.com.dio.soccernews.ui.commons.adapters.NewsAdapter
+import br.com.dio.soccernews.ui.commons.adapter.NewsAdapter
 import com.google.android.material.snackbar.Snackbar
 
 class NewsFragment : Fragment() {

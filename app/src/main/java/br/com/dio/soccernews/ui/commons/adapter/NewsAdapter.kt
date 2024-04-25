@@ -1,4 +1,4 @@
-package br.com.dio.soccernews.ui.commons.adapters
+package br.com.dio.soccernews.ui.commons.adapter
 
 import android.content.Intent
 import android.net.Uri

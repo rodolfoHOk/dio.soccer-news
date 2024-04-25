@@ -24,10 +24,6 @@ class FavoritesViewModel(
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    init {
-        findAllFavorites()
-    }
-
     fun removeFavorite(news: News) = viewModelScope.launch(Dispatchers.IO) {
         newsRepository.deleteFavorite(news)
         withContext(Dispatchers.Main) {

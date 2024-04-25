@@ -1,4 +1,4 @@
-package br.com.dio.soccernews
+package br.com.dio.soccernews.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import br.com.dio.soccernews.R
 import br.com.dio.soccernews.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

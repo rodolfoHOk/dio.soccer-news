@@ -26,10 +26,6 @@ class NewsViewModel(
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    init {
-        getAllNews()
-    }
-
     fun favorite(newsToFavorite: News) = viewModelScope.launch(Dispatchers.IO) {
         if (newsToFavorite.favorite) {
             newsRepository.deleteFavorite(newsToFavorite)
