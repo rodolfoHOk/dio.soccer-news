@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import br.com.dio.soccernews.data.local.entity.NewsEntity
-import br.com.dio.soccernews.domain.model.News
 
 @Dao
 interface NewsDao {
@@ -15,9 +14,9 @@ interface NewsDao {
     fun findAllFavorites(favorite: Boolean = true) : List<NewsEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertOrReplace(news: News)
+    fun insertOrReplace(news: NewsEntity)
 
     @Delete
-    fun delete(news: News)
+    fun delete(news: NewsEntity)
 
 }

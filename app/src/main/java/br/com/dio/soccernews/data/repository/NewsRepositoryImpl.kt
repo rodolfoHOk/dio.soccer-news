@@ -1,24 +1,31 @@
 package br.com.dio.soccernews.data.repository
 
+import br.com.dio.soccernews.data.local.AppDatabase
+import br.com.dio.soccernews.data.local.mapper.toDomain
+import br.com.dio.soccernews.data.local.mapper.toEntity
 import br.com.dio.soccernews.data.remote.SoccerNewsApi
 import br.com.dio.soccernews.domain.model.News
 import br.com.dio.soccernews.domain.repository.NewsRepository
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-class NewsRepositoryImpl : NewsRepository {
+class NewsRepositoryImpl(
+    private val soccerNewsApi: SoccerNewsApi,
+    private val appDatabase: AppDatabase
+) : NewsRepository {
 
     override suspend fun getAllNews(): List<News> {
         return soccerNewsApi.getAllNews()
     }
 
-    companion object {
-        private val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://rodolfohok.github.io/dio.soccer-news-api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    override suspend fun findAllFavorites(): List<News> {
+        return appDatabase.newsDao().findAllFavorites().toDomain()
+    }
 
-        private val soccerNewsApi: SoccerNewsApi = retrofit.create(SoccerNewsApi::class.java)
+    override suspend fun insertOrReplace(news: News) {
+        appDatabase.newsDao().insertOrReplace(news = news.toEntity())
+    }
+
+    override suspend fun delete(news: News) {
+        appDatabase.newsDao().delete(news = news.toEntity())
     }
 
 }
