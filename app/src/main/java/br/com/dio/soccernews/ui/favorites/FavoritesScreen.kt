@@ -6,6 +6,7 @@ import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -16,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import br.com.dio.soccernews.R
 import br.com.dio.soccernews.domain.model.News
 import br.com.dio.soccernews.ui.commons.state.ActionState
+import br.com.dio.soccernews.ui.commons.state.LocalSnackbarHostState
 import br.com.dio.soccernews.ui.commons.state.TopBarState
 import br.com.dio.soccernews.ui.components.NewsList
 
@@ -36,7 +38,13 @@ fun FavoritesScreen(
     val errorMessage: String by favoritesViewModel.errorMessage.observeAsState("")
 
     if (actionState == ActionState.ERROR && errorMessage.isNotBlank()) {
-        Unit // TODO Snackbar composable error message remove Snackbar legacy in fragment
+        val snackbarHostState = LocalSnackbarHostState.current
+        LaunchedEffect(key1 = Unit) {
+            snackbarHostState.showSnackbar(
+                message = errorMessage,
+                duration = SnackbarDuration.Long
+            )
+        }
     }
 
     val pullRefreshActionState = rememberPullRefreshState(
