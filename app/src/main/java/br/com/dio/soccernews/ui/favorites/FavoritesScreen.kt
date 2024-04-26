@@ -31,6 +31,7 @@ fun FavoritesScreen(
     val screenTitle = stringResource(id = R.string.title_favorites)
     LaunchedEffect(key1 = Unit) {
         onComposing(TopBarState(title = screenTitle))
+        favoritesViewModel.findAllFavorites()
     }
 
     val favoritesNews: List<News> by favoritesViewModel.favoritesNewsList.observeAsState(listOf())

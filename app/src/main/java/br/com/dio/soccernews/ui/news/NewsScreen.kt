@@ -31,6 +31,7 @@ fun NewsScreen(
     val screenTitle = stringResource(id = R.string.title_news)
     LaunchedEffect(key1 = Unit) {
         onComposing(TopBarState(title = screenTitle))
+        newsViewModel.getAllNews()
     }
 
     val newsList: List<News> by newsViewModel.newsList.observeAsState(listOf())
