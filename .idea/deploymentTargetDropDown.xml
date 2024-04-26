@@ -5,6 +5,9 @@
       <entry key="NewsItemPreview">
         <State />
       </entry>
+      <entry key="NewsListPreview">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
