@@ -26,7 +26,7 @@ fun FavoritesScreen(
     onComposing: (topBarState: TopBarState) -> Unit
     ) {
 
-    val screenTitle = stringResource(id = R.string.title_news)
+    val screenTitle = stringResource(id = R.string.title_favorites)
     LaunchedEffect(key1 = Unit) {
         onComposing(TopBarState(title = screenTitle))
     }

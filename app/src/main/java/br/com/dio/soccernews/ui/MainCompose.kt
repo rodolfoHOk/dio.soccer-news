@@ -23,10 +23,17 @@ fun MainCompose() {
     var topBarState by remember { mutableStateOf(TopBarState()) }
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text(text = topBarState.title) }) },
-        bottomBar = { AppNavigationBar(navController = navController) }
+        topBar = {
+            TopAppBar(title = { Text(text = topBarState.title) })
+        },
+        bottomBar = {
+            AppNavigationBar(navController = navController)
+        }
     ) { paddingValues ->
-        AppNavHost(navController = navController, modifier = Modifier.padding(paddingValues)) {
+        AppNavHost(
+            navController = navController,
+            modifier = Modifier.padding(paddingValues)
+        ) {
             topBarState = it
         }
     }

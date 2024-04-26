@@ -30,6 +30,10 @@ class FavoritesViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
+    init {
+        findAllFavorites()
+    }
+
     fun removeFavorite(news: News) = viewModelScope.launch(Dispatchers.IO) {
         newsRepository.deleteFavorite(news)
         findAllFavorites()
