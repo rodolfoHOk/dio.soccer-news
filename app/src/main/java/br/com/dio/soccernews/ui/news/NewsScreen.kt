@@ -23,7 +23,7 @@ fun NewsScreen(newsViewModel: NewsViewModel) {
     val errorMessage: String by newsViewModel.errorMessage.observeAsState("")
 
     if (state == State.ERROR && errorMessage.isNotBlank()) {
-        Unit // TODO Snackbar error message
+        Unit // TODO Snackbar composable error message remove Snackbar legacy in fragment
     }
 
     val pullRefreshState = rememberPullRefreshState(

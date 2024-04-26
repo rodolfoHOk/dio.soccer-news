@@ -23,7 +23,7 @@ fun FavoritesScreen(favoritesViewModel: FavoritesViewModel) {
     val errorMessage: String by favoritesViewModel.errorMessage.observeAsState("")
 
     if (state == State.ERROR && errorMessage.isNotBlank()) {
-        Unit // TODO Snackbar error message
+        Unit // TODO Snackbar composable error message remove Snackbar legacy in fragment
     }
 
     val pullRefreshState = rememberPullRefreshState(
