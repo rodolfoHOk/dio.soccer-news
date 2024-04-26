@@ -13,7 +13,6 @@ import br.com.dio.soccernews.ui.commons.state.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.net.HttpURLConnection
 import javax.inject.Inject
@@ -24,7 +23,7 @@ class NewsViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel() {
 
-    private val _newsList = MutableLiveData<List<News>>(listOf())
+    private val _newsList = MutableLiveData<List<News>>()
     val newsList: LiveData<List<News>> = _newsList
 
     private val _state = MutableLiveData<State>()
@@ -36,59 +35,41 @@ class NewsViewModel @Inject constructor(
     fun favorite(newsToFavorite: News) = viewModelScope.launch(Dispatchers.IO) {
         if (newsToFavorite.favorite) {
             newsRepository.deleteFavorite(newsToFavorite)
-            withContext(Dispatchers.Main) {
-                _newsList.value = newsList.value?.map { news ->
-                    if (news.id == newsToFavorite.id) {
-                        news.favorite = false
-                    }
-                    news
-                }?.toList()
-            }
+            getAllNews()
         } else {
             newsToFavorite.favorite = true
             newsRepository.insertOrReplaceFavorite(newsToFavorite)
-            withContext(Dispatchers.Main) {
-                _newsList.value = newsList.value?.map { news ->
-                    if (news.id == newsToFavorite.id) {
-                        news.favorite = true
-                    }
-                    news
-                }?.toList()
-            }
+            getAllNews()
         }
     }
 
     fun getAllNews() = viewModelScope.launch(Dispatchers.IO) {
-        withContext(Dispatchers.Main) {
-            _state.value = State.DOING
-        }
+        _state.postValue(State.DOING)
         runCatching {
             newsRepository.getAllNews()
         }.onSuccess { news ->
-            withContext(Dispatchers.Main) {
-                _newsList.value = news
-                _state.value = State.DONE
-            }
+            _newsList.postValue(news)
+            _state.postValue(State.DONE)
         }.onFailure { exception: Throwable ->
             when (exception) {
                 is HttpException -> {
                     when (exception.code()) {
-                        HttpURLConnection.HTTP_NOT_FOUND -> withContext(Dispatchers.Main) {
-                            _errorMessage.value = getResourceString(R.string.resource_not_found)
-                            _state.value = State.ERROR
+                        HttpURLConnection.HTTP_NOT_FOUND -> {
+                            _errorMessage.postValue(getResourceString(R.string.resource_not_found))
+                            _state.postValue(State.ERROR)
                         }
 
-                        else -> withContext(Dispatchers.Main) {
-                            _errorMessage.value = getResourceString(R.string.resource_fetch_error)
-                            _state.value = State.ERROR
+                        else -> {
+                            _errorMessage.postValue(getResourceString(R.string.resource_fetch_error))
+                            _state.postValue(State.ERROR)
                         }
                     }
                 }
 
-                else -> withContext(Dispatchers.Main) {
+                else -> {
                     Log.e("App error", exception.stackTraceToString())
-                    _errorMessage.value = getResourceString(R.string.resource_fetch_error)
-                    _state.value = State.ERROR
+                    _errorMessage.postValue(getResourceString(R.string.resource_fetch_error))
+                    _state.postValue(State.ERROR)
                 }
             }
         }

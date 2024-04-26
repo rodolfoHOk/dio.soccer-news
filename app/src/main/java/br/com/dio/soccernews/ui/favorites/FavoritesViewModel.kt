@@ -13,7 +13,6 @@ import br.com.dio.soccernews.ui.commons.state.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,28 +32,20 @@ class FavoritesViewModel @Inject constructor(
 
     fun removeFavorite(news: News) = viewModelScope.launch(Dispatchers.IO) {
         newsRepository.deleteFavorite(news)
-        withContext(Dispatchers.Main) {
-            _favoritesNewsList.value = favoritesNewsList.value?.minus(news)
-        }
+        findAllFavorites()
     }
 
     fun findAllFavorites() = viewModelScope.launch(Dispatchers.IO) {
-        withContext(Dispatchers.Main) {
-            _state.value = State.DOING
-        }
+        _state.postValue(State.DOING)
         runCatching {
             newsRepository.findAllFavorites()
         }.onSuccess { newsList ->
-            withContext(Dispatchers.Main) {
-                _favoritesNewsList.value = newsList
-                _state.value = State.DONE
-            }
+            _favoritesNewsList.postValue(newsList)
+            _state.postValue(State.DONE)
         }.onFailure { exception: Throwable ->
-            withContext(Dispatchers.Main) {
-                Log.e("App error", exception.stackTraceToString())
-                _errorMessage.value = getResourceString(R.string.data_recover_error)
-                _state.value = State.ERROR
-            }
+            Log.e("App error", exception.stackTraceToString())
+            _errorMessage.postValue(getResourceString(R.string.data_recover_error))
+            _state.postValue(State.ERROR)
         }
     }
 
