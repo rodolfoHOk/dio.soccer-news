@@ -90,6 +90,7 @@ dependencies {
     // Jetpack Compose Additional
     implementation("androidx.compose.runtime:runtime-livedata")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
+    implementation("androidx.compose.material:material")
 
     implementation("com.squareup.picasso3:picasso-compose:3.0.0-alpha05")
 }

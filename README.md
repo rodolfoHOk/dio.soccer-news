@@ -41,6 +41,7 @@
 - androidx.compose:compose-bom (android test)
 - androidx.compose.ui:ui-test-junit4 (android test)
 - androidx.compose.runtime:runtime-livedata
+- androidx.compose.material:material
 - androidx.lifecycle:lifecycle-viewmodel-compose
 - com.squareup.picasso3:picasso-compose:3.0.0-alpha05 (substitui com.squareup.picasso:picasso)
 
