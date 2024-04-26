@@ -7,13 +7,18 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import br.com.dio.soccernews.ui.commons.state.TopBarState
 import br.com.dio.soccernews.ui.favorites.FavoritesScreen
 import br.com.dio.soccernews.ui.favorites.FavoritesViewModel
 import br.com.dio.soccernews.ui.news.NewsScreen
 import br.com.dio.soccernews.ui.news.NewsViewModel
 
 @Composable
-fun AppNavHost(navController: NavController, modifier: Modifier) {
+fun AppNavHost(
+    navController: NavController,
+    modifier: Modifier,
+    onComposing: (topBarState: TopBarState) -> Unit
+) {
     NavHost(
         navController = navController as NavHostController,
         startDestination = Screen.News.route,
@@ -22,12 +27,12 @@ fun AppNavHost(navController: NavController, modifier: Modifier) {
 
         composable(Screen.News.route) {
             val newsViewModel = hiltViewModel<NewsViewModel>()
-            NewsScreen(newsViewModel = newsViewModel)
+            NewsScreen(newsViewModel = newsViewModel, onComposing)
         }
 
         composable(Screen.Favorites.route) {
             val favoritesViewModel = hiltViewModel<FavoritesViewModel>()
-            FavoritesScreen(favoritesViewModel = favoritesViewModel)
+            FavoritesScreen(favoritesViewModel = favoritesViewModel, onComposing)
         }
 
     }

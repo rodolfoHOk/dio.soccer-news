@@ -30,7 +30,7 @@ class NewsFragment : Fragment() {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
 
             setContent { 
-                NewsScreen(newsViewModel = newsViewModel)
+                NewsScreen(newsViewModel = newsViewModel, {})
             }
         }
     }

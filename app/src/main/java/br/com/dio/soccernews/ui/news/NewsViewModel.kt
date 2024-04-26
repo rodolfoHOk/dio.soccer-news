@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.dio.soccernews.R
 import br.com.dio.soccernews.domain.model.News
 import br.com.dio.soccernews.domain.repository.NewsRepository
-import br.com.dio.soccernews.ui.commons.state.State
+import br.com.dio.soccernews.ui.commons.state.ActionState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,8 +26,8 @@ class NewsViewModel @Inject constructor(
     private val _newsList = MutableLiveData<List<News>>()
     val newsList: LiveData<List<News>> = _newsList
 
-    private val _state = MutableLiveData<State>()
-    val state: LiveData<State> = _state
+    private val _Action_state = MutableLiveData<ActionState>()
+    val actionState: LiveData<ActionState> = _Action_state
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
@@ -44,24 +44,24 @@ class NewsViewModel @Inject constructor(
     }
 
     fun getAllNews() = viewModelScope.launch(Dispatchers.IO) {
-        _state.postValue(State.DOING)
+        _Action_state.postValue(ActionState.DOING)
         runCatching {
             newsRepository.getAllNews()
         }.onSuccess { news ->
             _newsList.postValue(news)
-            _state.postValue(State.DONE)
+            _Action_state.postValue(ActionState.DONE)
         }.onFailure { exception: Throwable ->
             when (exception) {
                 is HttpException -> {
                     when (exception.code()) {
                         HttpURLConnection.HTTP_NOT_FOUND -> {
                             _errorMessage.postValue(getResourceString(R.string.resource_not_found))
-                            _state.postValue(State.ERROR)
+                            _Action_state.postValue(ActionState.ERROR)
                         }
 
                         else -> {
                             _errorMessage.postValue(getResourceString(R.string.resource_fetch_error))
-                            _state.postValue(State.ERROR)
+                            _Action_state.postValue(ActionState.ERROR)
                         }
                     }
                 }
@@ -69,7 +69,7 @@ class NewsViewModel @Inject constructor(
                 else -> {
                     Log.e("App error", exception.stackTraceToString())
                     _errorMessage.postValue(getResourceString(R.string.resource_fetch_error))
-                    _state.postValue(State.ERROR)
+                    _Action_state.postValue(ActionState.ERROR)
                 }
             }
         }

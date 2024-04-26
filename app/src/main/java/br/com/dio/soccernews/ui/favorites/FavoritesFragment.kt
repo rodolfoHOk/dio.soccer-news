@@ -32,7 +32,7 @@ class FavoritesFragment : Fragment() {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
 
             setContent {
-                FavoritesScreen(favoritesViewModel = favoritesViewModel)
+                FavoritesScreen(favoritesViewModel = favoritesViewModel, {})
             }
         }
     }
