@@ -43,6 +43,8 @@
 - androidx.compose.runtime:runtime-livedata
 - androidx.compose.material:material
 - androidx.lifecycle:lifecycle-viewmodel-compose
+- androidx.navigation:navigation-compose
+- androidx.hilt:hilt-navigation-compose
 - com.squareup.picasso3:picasso-compose:3.0.0-alpha05 (substitui com.squareup.picasso:picasso)
 
 ## Melhorias ou mudanças em relação as lives
@@ -61,7 +63,27 @@
 
 ### Com JetPack Compose (Branch main)
 
-- Migração para Jetpack Compose
+- Migração para Jetpack Compose:
+    - Adicionar dependências do Jetpack Compose
+    - Criar news item composable
+    - Criar news list composable
+    - Criar news screen composable
+    - Usar news screen in news fragment mantendo snackbar de erros no fragment
+    - Criar favorites screen composable
+    - Usar favorites screen in favorites fragment mantendo snackbar de erros no fragment
+    - Deletar adapter e fragments layout
+    - Adicionar dependências do Navigation Compose e Hilt Navigation Compose
+    - Criar app navigation bar (bottom nav bar)
+    - Criar app nav host
+    - Criar main compose
+    - Usar main compose in main activity
+    - Remover legacy action bar nos themes.xml
+    - Deletar xml da activity main layout, xml do bottom nav menu e xml do mobile navigation
+    - Deletar fragments
+    - Implementar snackbar de erros com composable
+    - Criar app theme composable // TODO
+    - Usar app theme in main activity // TODO
+    - // TODO
 
 ## Rodar
 
