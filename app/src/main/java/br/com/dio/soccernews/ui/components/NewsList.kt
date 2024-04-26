@@ -1,5 +1,6 @@
 package br.com.dio.soccernews.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -9,12 +10,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import br.com.dio.soccernews.domain.model.News
 
 @Composable
-fun NewsList(newsList: List<News>) {
+fun NewsList(newsList: List<News>, onFavorite: (news: News) -> Unit) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
         items(newsList) { news ->
-            NewsItem(news = news)
+            NewsItem(news = news, onFavorite = onFavorite)
         }
     }
 }
@@ -42,5 +43,7 @@ fun NewsListPreview() {
         ),
     )
 
-    NewsList(newsList = newsList)
+    NewsList(newsList = newsList, onFavorite = { newsClicked ->
+        Log.d("App -> ", "favorite click on news with id: ${newsClicked.id}")
+    })
 }

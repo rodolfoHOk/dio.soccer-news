@@ -1,5 +1,8 @@
 package br.com.dio.soccernews.ui.components
 
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,7 +32,7 @@ import com.squareup.picasso3.Picasso
 import com.squareup.picasso3.compose.rememberPainter
 
 @Composable
-fun NewsItem(news: News) {
+fun NewsItem(news: News, onFavorite: (news: News) -> Unit) {
     val picasso = Picasso.Builder(LocalContext.current).build()
     val painter = picasso.rememberPainter(key = news.id) { picasso ->
         picasso.load(news.image)
@@ -38,6 +41,21 @@ fun NewsItem(news: News) {
             .centerCrop()
             .resize(396, 160)
 
+    }
+
+    val context = LocalContext.current
+
+    fun handleOpenLink() {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(news.link))
+        context.startActivity(intent)
+    }
+
+    fun handleShare() {
+        val intent = Intent(Intent.ACTION_SEND)
+            .setType("text/plain")
+            .putExtra(Intent.EXTRA_TEXT, news.link)
+        val shareString = context.getString(R.string.share)
+        context.startActivity(Intent.createChooser(intent, shareString))
     }
 
     Card(
@@ -75,12 +93,12 @@ fun NewsItem(news: News) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TextButton(onClick = { /*TODO*/ }) {
+            TextButton(onClick = { handleOpenLink() }) {
                 Text(text = stringResource(id = R.string.card_btn_open_link_label))
             }
 
             Row {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { onFavorite(news) }) {
                     if (news.favorite) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_favorite),
@@ -100,7 +118,7 @@ fun NewsItem(news: News) {
                     }
                 }
 
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { handleShare() }) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_share),
                         contentDescription = stringResource(
@@ -126,5 +144,7 @@ fun NewsItemPreview() {
         favorite = false
     )
 
-    NewsItem(news = news)
+    NewsItem(news = news, onFavorite = { newsClicked ->
+        Log.d("App -> ", "favorite click on news with id: ${newsClicked.id}")
+    })
 }
