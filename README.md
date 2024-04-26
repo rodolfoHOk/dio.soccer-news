@@ -33,7 +33,13 @@
 
 ### Adicionais com JetPack Compose
 
-- 
+- androidx.compose:compose-bom
+- androidx.compose.material3:material3
+- androidx.compose.ui:ui-tooling-preview
+- androidx.compose.ui:ui-tooling (debug)
+- androidx.compose.ui:ui-test-manifest (debug)
+- androidx.compose:compose-bom (android test)
+- androidx.compose.ui:ui-test-junit4 (android test)
 
 ## Melhorias ou mudanças em relação as lives
 

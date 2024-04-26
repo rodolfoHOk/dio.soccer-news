@@ -1,5 +1,6 @@
 package br.com.dio.soccernews.ui.commons.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.soccernews.R
 import br.com.dio.soccernews.databinding.NewsItemBinding
 import br.com.dio.soccernews.domain.model.News
-import com.squareup.picasso.Picasso
+import com.squareup.picasso3.Picasso
 
 class NewsAdapter(
     private val newsList: List<News>,
@@ -18,7 +19,7 @@ class NewsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = NewsItemBinding.inflate(layoutInflater, parent, false)
-        return NewsViewHolder(binding)
+        return NewsViewHolder(binding, parent.context)
     }
 
     override fun getItemCount(): Int = newsList.size
@@ -28,13 +29,14 @@ class NewsAdapter(
     }
 
     inner class NewsViewHolder(
-        private val binding: NewsItemBinding
+        private val binding: NewsItemBinding,
+        private val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(news: News) = binding.run {
             this.tvCardTitle.text = news.title
             this.tvCardHeadline.text = news.headline
-            Picasso.get().load(news.image)
+            Picasso.Builder(context).build().load(news.image)
                 .centerCrop()
                 .resize(396, 160)
                 .into(this.ivCardImage)
