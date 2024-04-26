@@ -40,6 +40,9 @@
 - androidx.compose.ui:ui-test-manifest (debug)
 - androidx.compose:compose-bom (android test)
 - androidx.compose.ui:ui-test-junit4 (android test)
+- androidx.compose.runtime:runtime-livedata
+- androidx.lifecycle:lifecycle-viewmodel-compose
+- com.squareup.picasso3:picasso-compose:3.0.0-alpha05 (substitui com.squareup.picasso:picasso)
 
 ## Melhorias ou mudanças em relação as lives
 
@@ -77,3 +80,4 @@
 - https://developer.android.com/develop/ui/compose/setup?hl=pt-br#setup-compose
 - https://developer.android.com/develop/ui/compose/migrate/migration-scenarios/recycler-view?hl=pt-br
 - https://developer.android.com/develop/ui/compose/migrate/migration-scenarios/navigation?hl=pt-br
+- https://developer.android.com/develop/ui/compose/libraries?hl=pt-br#hilt
