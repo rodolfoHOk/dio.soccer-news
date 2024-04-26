@@ -62,7 +62,6 @@ dependencies {
 
     implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
     implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
-//    implementation("com.squareup.picasso:picasso:2.8") //
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     implementation("com.google.dagger:hilt-android:$hilt_version")
@@ -76,10 +75,18 @@ dependencies {
 
     // Jetpack Compose Migration
     val composeBom = platform("androidx.compose:compose-bom:2024.04.01")
+    val nav_version = "2.7.7"
 
     implementation(composeBom)
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.compose.material:material") // for PullRefreshIndicator only
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("com.squareup.picasso3:picasso-compose:3.0.0-alpha05") // substitute com.squareup.picasso:picasso
 
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
@@ -87,10 +94,4 @@ dependencies {
     androidTestImplementation(composeBom)
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 
-    // Jetpack Compose Additional
-    implementation("androidx.compose.runtime:runtime-livedata")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
-    implementation("androidx.compose.material:material")
-
-    implementation("com.squareup.picasso3:picasso-compose:3.0.0-alpha05")
 }
