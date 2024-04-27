@@ -81,9 +81,9 @@
     - Deletar xml da activity main layout, xml do bottom nav menu e xml do mobile navigation
     - Deletar fragments
     - Implementar snackbar de erros com composable
-    - Criar app theme composable // TODO
-    - Usar app theme in main activity // TODO
-    - // TODO
+    - Criar app theme composable
+    - Usar app theme in main activity
+    - Customizar tema
 
 ## Rodar
 
