@@ -1,4 +1,4 @@
-# Soccer News
+# Soccer News App
 
 > App Nativo Sobre Futebol Feminino com Android Jetpack da DIO
 
@@ -84,6 +84,15 @@
     - Criar app theme composable
     - Usar app theme in main activity
     - Customizar tema
+
+## Galeria de imagens
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/dio-soccer-news-01.png" alt="Soccer News App Imagem 01" height="400" />
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/dio-soccer-news-02.png" alt="Soccer News App Imagem 02" height="400" />
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/dio-soccer-news-03.png" alt="Soccer News App Imagem 03" height="400" />
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/dio-soccer-news-04.png" alt="Soccer News App Imagem 04" height="400" />
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/dio-soccer-news-05.png" alt="Soccer News App Imagem 05" height="400" />
 
 ## Rodar
 
