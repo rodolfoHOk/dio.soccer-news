@@ -76,11 +76,11 @@
     - Criar app navigation bar (bottom nav bar)
     - Criar app nav host
     - Criar main compose
+    - Implementar snackbar de erros com composable
     - Usar main compose in main activity
     - Remover legacy action bar nos themes.xml
     - Deletar xml da activity main layout, xml do bottom nav menu e xml do mobile navigation
     - Deletar fragments
-    - Implementar snackbar de erros com composable
     - Criar app theme composable
     - Usar app theme in main activity
     - Customizar tema

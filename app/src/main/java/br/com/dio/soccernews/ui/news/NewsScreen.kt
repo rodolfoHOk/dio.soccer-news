@@ -14,6 +14,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import br.com.dio.soccernews.R
 import br.com.dio.soccernews.domain.model.News
 import br.com.dio.soccernews.ui.commons.state.ActionState
@@ -23,10 +24,9 @@ import br.com.dio.soccernews.ui.components.NewsList
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun NewsScreen(
-    newsViewModel: NewsViewModel,
-    onComposing: (topBarState: TopBarState) -> Unit
-) {
+fun NewsScreen(onComposing: (topBarState: TopBarState) -> Unit) {
+
+    val newsViewModel = hiltViewModel<NewsViewModel>()
 
     val screenTitle = stringResource(id = R.string.title_news)
     LaunchedEffect(key1 = Unit) {
@@ -40,7 +40,7 @@ fun NewsScreen(
 
     if (actionState == ActionState.ERROR && errorMessage.isNotBlank()) {
         val snackbarHostState = LocalSnackbarHostState.current
-        LaunchedEffect(key1 = Unit) {
+        LaunchedEffect(key1 = snackbarHostState) {
             snackbarHostState.showSnackbar(
                 message = errorMessage,
                 duration = SnackbarDuration.Long
